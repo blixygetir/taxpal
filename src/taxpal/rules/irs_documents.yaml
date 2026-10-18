@@ -1,0 +1,89 @@
+# Plain-English summaries of the IRS documents in irs_corpus.jsonl, for the IRS Guidelines page.
+# Keyed by the corpus "doc" id. Keep them short and simple. Exact amounts that change
+# every year live in ty2026.yaml.
+documents:
+  i1040sc:
+    name: Your Business Form
+    summary: How to fill in Schedule C, the form that shows what your business earned and spent.
+    key_points:
+      - Write down all the money your business made.
+      - Each kind of cost has its own line.
+      - What's left over is your profit.
+    used_for: Your business profit page.
+
+  i1040sse:
+    name: Self-Employment Tax
+    summary: The tax you pay for Social Security and Medicare when you work for yourself.
+    key_points:
+      - You pay it if your profit is $400 or more.
+      - It's about 15% of most of your profit.
+      - You get to take half of it off your income.
+    used_for: Your self-employment tax page.
+
+  i8995:
+    name: The 20% Business Break
+    summary: A tax break that can take up to 20% off the income tax on your business profit.
+    key_points:
+      - Most small businesses can get it.
+      - If you earn a lot, a longer form is needed.
+    used_for: The break shown on your self-employment tax page.
+
+  p334:
+    name: Small Business Basics
+    summary: The IRS's main guide for people who work for themselves.
+    key_points:
+      - Money from clients and payment apps counts as income.
+      - You can take off costs that are normal and needed for your work.
+      - Personal costs don't count.
+    used_for: Deciding what counts as income and as a business cost.
+
+  p463:
+    name: Travel, Gifts and Cars
+    summary: Rules for work trips, meals, gifts and driving.
+    key_points:
+      - Work meals usually count at half price.
+      - Gifts count up to $25 per person each year.
+      - Driving to work every day doesn't count. Trips for work do.
+      - Keep receipts for hotels, and for anything $75 or more.
+    used_for: Meals, gifts, mileage and receipt reminders.
+
+  p587:
+    name: Home Office
+    summary: How to count a part of your home that you use only for work.
+    key_points:
+      - The space must be used only for work, and often.
+      - The easy way gives $5 for each square foot, up to 300.
+      - It can't be more than your profit.
+    used_for: The home office amount.
+
+  p583:
+    name: Keeping Records
+    summary: What papers to keep and how long to keep them.
+    key_points:
+      - Keep receipts, invoices and bank statements.
+      - Keep them for at least 3 years after you file.
+    used_for: The record reminders in your summary.
+
+  p505:
+    name: Paying Tax During the Year
+    summary: How to pay tax four times a year so you don't owe a penalty.
+    key_points:
+      - Pay during the year if you'll owe $1,000 or more.
+      - Paying what you owed last year usually keeps you safe.
+    used_for: Your 2027 payments page.
+
+  p946:
+    name: Big Purchases
+    summary: How to handle things that last a long time, like a laptop or camera.
+    key_points:
+      - Big items are often spread over a few years.
+      - Some can be taken off all at once instead.
+    used_for: Flagging big purchases for your tax professional.
+
+  p560:
+    name: Retirement Savings
+    summary: Retirement accounts for people who work for themselves.
+    key_points:
+      - Money you save in these accounts can lower your tax.
+      - It's taken off on a different form from your business costs.
+    used_for: Handling retirement savings correctly.

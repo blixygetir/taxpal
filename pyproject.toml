@@ -1,0 +1,32 @@
+[project]
+name = "taxpal"
+version = "0.1.0"
+description = "Local, privacy-first US Schedule C tax-prep assistant: WebGPU AI in the browser + local web API"
+readme = "README.md"
+authors = [
+    { name = "aaryan dogra", email = "aaryan.dogra7@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.143.0",
+    "pypdf>=6.20.1",
+    "python-multipart>=0.0.32",
+    "pyyaml",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.14,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+]
+
+[project.scripts]
+taxpal = "taxpal.api:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

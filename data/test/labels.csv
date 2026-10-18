@@ -1,0 +1,117 @@
+file,date,description,amount,expected_category,keyword_rule
+bank_checking.csv,2026-01-01,RENT PAYMENT - BIRCH LN APTS,-2350.00,home_utilities,yes
+bank_checking.csv,2026-01-01,BLUE CROSS CA PREMIUM,-438.00,health_insurance,yes
+bank_checking.csv,2026-01-03,WEWORK MEMBERSHIP,-350.00,rent,yes
+bank_checking.csv,2026-01-04,STRIPE PAYOUT ST-70822,2544.34,income,yes
+bank_checking.csv,2026-01-05,SHELL OIL 12915,-61.45,car_actual,yes
+bank_checking.csv,2026-01-05,GITHUB INC,-16.25,software,yes
+bank_checking.csv,2026-01-22,DIGITALOCEAN.COM,-35.40,software,yes
+bank_checking.csv,2026-01-23,SHELL OIL 8331,-43.02,car_actual,yes
+bank_checking.csv,2026-01-25,PETCO 66612,-73.34,personal,no
+bank_checking.csv,2026-01-26,UPWORK ESCROW INC 85259,988.28,income,yes
+bank_checking.csv,2026-01-28,PAYMENT TO NORTHSTAR VISA AUTOPAY PAYMENT,-2234.22,transfer,yes
+bank_checking.csv,2026-01-30,CALTRAIN CLIPPER,-15.13,travel,no
+bank_checking.csv,2026-02-01,RENT PAYMENT - BIRCH LN APTS,-2350.00,home_utilities,yes
+bank_checking.csv,2026-02-01,BLUE CROSS CA PREMIUM,-438.00,health_insurance,yes
+bank_checking.csv,2026-02-02,AMZN MKTP US*QECXE8RT7,-49.98,personal,no
+bank_checking.csv,2026-02-08,CVS PHARMACY 35814,-28.58,personal,no
+bank_checking.csv,2026-02-15,SHELL OIL 54269,-52.00,car_actual,yes
+bank_checking.csv,2026-02-17,NAMECHEAP.COM,-10.58,software,no
+bank_checking.csv,2026-02-19,CVS PHARMACY 56519,-29.38,personal,no
+bank_checking.csv,2026-02-22,UPWORK ESCROW INC 19373,932.82,income,yes
+bank_checking.csv,2026-02-22,PETCO 7572,-60.89,personal,no
+bank_checking.csv,2026-02-28,CHIPOTLE 56444,-27.72,meals,yes
+bank_checking.csv,2026-02-28,CALTRAIN CLIPPER,-10.64,travel,no
+bank_checking.csv,2026-02-28,PAYMENT TO NORTHSTAR VISA AUTOPAY PAYMENT,-1362.95,transfer,yes
+bank_checking.csv,2026-03-01,RENT PAYMENT - BIRCH LN APTS,-2350.00,home_utilities,yes
+bank_checking.csv,2026-03-01,BLUE CROSS CA PREMIUM,-438.00,health_insurance,yes
+bank_checking.csv,2026-03-07,TRADER JOE S #1464,-50.02,personal,yes
+bank_checking.csv,2026-03-08,VERIZON WIRELESS,-91.80,phone_internet,yes
+bank_checking.csv,2026-03-09,VERIZON WIRELESS,-93.21,phone_internet,yes
+bank_checking.csv,2026-03-10,AMZN MKTP US*5WEA5GEP8,-19.07,personal,no
+bank_checking.csv,2026-03-14,DIGITALOCEAN.COM,-40.08,software,yes
+bank_checking.csv,2026-03-20,MAILCHIMP *MONTHLY,-54.56,software,no
+bank_checking.csv,2026-03-21,DIGITALOCEAN.COM,-32.97,software,yes
+bank_checking.csv,2026-03-28,PAYMENT TO NORTHSTAR VISA AUTOPAY PAYMENT,-846.92,transfer,yes
+bank_checking.csv,2026-03-29,WIRE IN BRIGHTLINE CREATIVE 88538,5176.97,income,no
+bank_checking.csv,2026-03-30,WEWORK MEMBERSHIP,-350.00,rent,yes
+credit_card.csv,2026-01-04,BEST BUY 21861,-229.51,supplies,no
+credit_card.csv,2026-01-07,GUSTO TAX ADVISORS,-426.23,legal_professional,no
+credit_card.csv,2026-01-07,AMAZON.COM*86LFU8XFR,-76.57,supplies,no
+credit_card.csv,2026-01-07,AMZN MKTP US*KBCR6E52N,-61.92,personal,no
+credit_card.csv,2026-01-09,PAYPAL *ETSYSELLER,-39.96,supplies,no
+credit_card.csv,2026-01-10,RETURN CREDIT AMZN MKTP US*KBCR6E52N,61.92,refund,yes
+credit_card.csv,2026-01-11,SEPHORA 26144,-64.94,personal,no
+credit_card.csv,2026-01-11,HISCOX INC,-32.00,insurance,yes
+credit_card.csv,2026-01-11,PRINTFUL INC,-152.56,supplies,no
+credit_card.csv,2026-01-13,SWEETGREEN 7582,-28.05,meals,no
+credit_card.csv,2026-01-15,BLUE BOTTLE COFFEE 94525,-10.57,meals,no
+credit_card.csv,2026-01-22,B&H PHOTO VIDEO 61946,-190.67,supplies,no
+credit_card.csv,2026-01-25,MAILCHIMP *MONTHLY,-33.45,software,no
+credit_card.csv,2026-02-02,COMCAST CABLE,-79.99,phone_internet,yes
+credit_card.csv,2026-02-07,WHOLE FOODS MKT 49351,-55.17,personal,yes
+credit_card.csv,2026-02-09,PETCO 32963,-72.53,personal,no
+credit_card.csv,2026-02-14,APPLE.COM/BILL,-1.27,software,no
+credit_card.csv,2026-02-14,OPENROUTER INC,-13.59,software,no
+credit_card.csv,2026-02-16,COSTCO WHSE #63031,-203.90,personal,no
+credit_card.csv,2026-02-20,GUSTO TAX ADVISORS,-252.10,legal_professional,no
+credit_card.csv,2026-02-20,PAYPAL *ETSYSELLER,-45.14,supplies,no
+credit_card.csv,2026-02-21,APPLE.COM/BILL,-6.82,software,no
+credit_card.csv,2026-02-24,SPECIALIZED BIKES 10961,-565.52,personal,no
+credit_card.csv,2026-02-26,AMAZON.COM*1L5JB1BF3,-192.31,supplies,no
+credit_card.csv,2026-02-28,GOOGLE ADS 97180,-227.83,advertising,yes
+credit_card.csv,2026-03-06,STAPLES 93141,-105.26,office,yes
+credit_card.csv,2026-03-06,BEST BUY 34082,-113.90,supplies,no
+credit_card.csv,2026-03-10,COMCAST CABLE,-79.99,phone_internet,yes
+credit_card.csv,2026-03-10,GUSTO TAX ADVISORS,-270.21,legal_professional,no
+credit_card.csv,2026-03-10,LYFT *RIDE 32439,-18.26,travel,no
+credit_card.csv,2026-03-10,AMAZON.COM*U4H5V1T87,-28.73,supplies,no
+credit_card.csv,2026-03-13,PAYPAL *ETSYSELLER,-43.20,supplies,no
+credit_card.csv,2026-03-15,PETCO 43081,-66.91,personal,no
+credit_card.csv,2026-03-19,STAPLES 69494,-54.94,office,yes
+credit_card.csv,2026-03-22,STAPLES 10359,-21.26,office,yes
+credit_card.csv,2026-03-29,GITHUB INC,-12.00,software,yes
+credit_card.csv,2026-03-31,FTB MYFTB PAYMENT,-727.48,estimated_tax_payment,no
+business_card.csv,2026-01-09,WEWORK MEMBERSHIP,-350.00,rent,yes
+business_card.csv,2026-01-11,OPENROUTER INC,-32.34,software,no
+business_card.csv,2026-01-18,GOOGLE ADS 67698,-293.95,advertising,yes
+business_card.csv,2026-01-27,PRINTFUL INC,-65.91,supplies,no
+business_card.csv,2026-01-28,AMAZON.COM*2X8TAUV7K,-124.02,supplies,no
+business_card.csv,2026-01-31,RETURN CREDIT AMAZON.COM*2X8TAUV7K,124.02,refund,yes
+business_card.csv,2026-02-01,UBER *TRIP 44065,-48.36,travel,no
+business_card.csv,2026-02-08,CHIPOTLE 77435,-14.43,meals,yes
+business_card.csv,2026-02-18,BEST BUY 57881,-294.04,supplies,no
+business_card.csv,2026-02-21,HOME DEPOT #47984,-76.85,supplies,no
+business_card.csv,2026-02-26,COSTCO WHSE #58711,-85.93,personal,no
+business_card.csv,2026-03-03,STARBUCKS STORE 36720,-24.27,meals,yes
+business_card.csv,2026-03-10,GUSTO TAX ADVISORS,-390.58,legal_professional,no
+business_card.csv,2026-03-21,UBER *TRIP 46293,-54.44,travel,no
+business_card.csv,2026-03-21,MAILCHIMP *MONTHLY,-42.88,software,no
+business_card.csv,2026-03-21,NETFLIX.COM,-15.49,personal,yes
+card_statement.pdf,2026-04-02,ADOBE *CREATIVE CLOUD,-59.99,software,yes
+card_statement.pdf,2026-04-02,ADOBE *CREATIVE CLOUD,-59.99,software,yes
+card_statement.pdf,2026-04-03,CHIPOTLE 13999,-30.03,meals,yes
+card_statement.pdf,2026-04-04,SWEETGREEN 86841,-15.67,meals,no
+card_statement.pdf,2026-04-08,AMAZON.COM*WBMSDJ29H,-25.22,supplies,no
+card_statement.pdf,2026-04-09,GOOGLE ADS 4280,-263.04,advertising,yes
+card_statement.pdf,2026-04-11,CA SOS BIZFILE,-20.00,taxes_licenses,no
+card_statement.pdf,2026-04-11,CALTRAIN CLIPPER,-24.38,travel,no
+card_statement.pdf,2026-04-12,RETURN CREDIT GOOGLE ADS 4280,263.04,refund,yes
+card_statement.pdf,2026-04-16,COSTCO WHSE #12836,-265.58,personal,no
+card_statement.pdf,2026-04-18,NAMECHEAP.COM,-15.42,software,no
+card_statement.pdf,2026-04-20,SWEETGREEN 14022,-39.49,meals,no
+card_statement.pdf,2026-04-25,LYFT *RIDE 61036,-35.16,travel,no
+card_statement.pdf,2026-04-28,MARRIOTT HOTELS 96631,-185.18,travel,yes
+card_statement.pdf,2026-04-29,AMAZON.COM*ATKJSMHBJ,-86.51,supplies,no
+checking_statement.docx,2026-04-01,RENT PAYMENT - BIRCH LN APTS,-2350.00,home_utilities,yes
+checking_statement.docx,2026-04-01,BLUE CROSS CA PREMIUM,-438.00,health_insurance,yes
+checking_statement.docx,2026-04-03,STRIPE PAYOUT ST-95581,1308.27,income,yes
+checking_statement.docx,2026-04-03,AMZN MKTP US*W312UH1BW,-69.90,personal,no
+checking_statement.docx,2026-04-09,WIRE IN BRIGHTLINE CREATIVE 88442,2887.89,income,no
+checking_statement.docx,2026-04-11,APPLE STORE #R46793,-1720.32,capital_purchase,no
+checking_statement.docx,2026-04-13,WHOLE FOODS MKT 16726,-31.16,personal,yes
+checking_statement.docx,2026-04-14,APPLE STORE #R58176,-1321.49,capital_purchase,no
+checking_statement.docx,2026-04-15,FIVERR 52873,-398.21,contract_labor,no
+checking_statement.docx,2026-04-20,FIVERR 64656,-292.83,contract_labor,no
+checking_statement.docx,2026-04-21,AMAZON.COM*KRGKSNMKE,-209.87,supplies,no
+checking_statement.docx,2026-04-28,PAYMENT TO NORTHSTAR VISA AUTOPAY PAYMENT,-1867.51,transfer,yes

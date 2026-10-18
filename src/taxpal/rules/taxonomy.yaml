@@ -1,0 +1,362 @@
+# Categories and which Schedule C line they land on (TY2026).
+#
+# treatment:
+#   income        Schedule C line 1 gross receipts
+#   deductible    deducted in full on its line
+#   business_use  deducted x business-use % (needs business_use_pct)
+#   meals         50% deductible (needs business_purpose)
+#   travel        deducted in full (needs business_purpose)
+#   gift          capped per recipient per year (needs recipient)
+#   car_extra     parking/tolls: deductible with standard mileage or actual method
+#   car_actual    fuel/repairs: only with the actual-expense method, x vehicle business %
+#   capital       not deducted by TaxPal; flagged for Form 4562
+#   schedule1     not Schedule C; shown as a Schedule 1 item
+#   tax_payment   federal estimated tax paid (a payment, not a deduction)
+#   nondeductible excluded, with the reason shown
+#   neutral       not income or expense (transfers, card payments, refunds)
+#
+# keywords: substring match (case-insensitive) for the first pass before the model.
+# keyword_confidence under 0.8 means the user still gets asked.
+
+categories:
+  income:
+    label: Business income
+    line: "1"
+    line_name: Gross receipts or sales
+    treatment: income
+    direction: in
+    irs: "Schedule C instructions, line 1; Pub 334, ch. 5"
+    rule: "Report all business income, whether or not you received a Form 1099."
+    keywords: [STRIPE PAYOUT, UPWORK ESCROW, CLIENT PAYMENT, INVOICE]
+    keyword_confidence: 0.85
+
+  advertising:
+    label: Advertising
+    line: "8"
+    line_name: Advertising
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 8"
+    rule: "Costs to advertise or promote the business."
+    keywords: [GOOGLE ADS, META ADS, FACEBK ADS, LINKEDIN ADS, VISTAPRINT]
+    keyword_confidence: 0.9
+
+  car_extra:
+    label: Business parking and tolls
+    line: "9"
+    line_name: Car and truck expenses
+    treatment: car_extra
+    direction: out
+    irs: "Pub 463, ch. 4"
+    rule: "Business parking fees and tolls are deductible in addition to the standard mileage rate. Parking at your regular workplace is commuting and not deductible."
+    keywords: [PARKING, E-ZPASS, EZPASS, FASTRAK, TOLL]
+    keyword_confidence: 0.7
+    needs: [business_purpose]
+
+  car_actual:
+    label: Vehicle operating costs (fuel, repairs)
+    line: "9"
+    line_name: Car and truck expenses
+    treatment: car_actual
+    direction: out
+    irs: "Pub 463, ch. 4"
+    rule: "Deductible only under the actual-expense method, times the vehicle's business-use %. Not deductible if you use the standard mileage rate."
+    keywords: [SHELL OIL, CHEVRON, EXXON, JIFFY LUBE, AUTO REPAIR]
+    keyword_confidence: 0.8
+
+  commissions_fees:
+    label: Platform and payment fees
+    line: "10"
+    line_name: Commissions and fees
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 10"
+    rule: "Commissions and fees paid for business, e.g. marketplace and payment-processor fees."
+    keywords: [STRIPE FEE, PAYPAL FEE, UPWORK FEE, ETSY FEE, SERVICE FEE - UPWORK]
+    keyword_confidence: 0.9
+
+  contract_labor:
+    label: Contract labor
+    line: "11"
+    line_name: Contract labor
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 11; 2026 Pub 1099"
+    rule: "Payments to independent contractors. If you paid one contractor $2,000 or more in 2026 you may need to file Form 1099-NEC."
+    keywords: [CONTRACTOR, FREELANCER PAYMENT]
+    keyword_confidence: 0.8
+
+  capital_purchase:
+    label: Equipment / capital purchase
+    line: "13"
+    line_name: Depreciation and section 179 expense deduction
+    treatment: capital
+    direction: out
+    irs: "Pub 946; Form 4562"
+    rule: "Property with a useful life over a year (computers, cameras, furniture) is depreciated or expensed via Form 4562. TaxPal flags it for your tax professional."
+    keywords: []
+
+  insurance:
+    label: Business insurance
+    line: "15"
+    line_name: Insurance (other than health)
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 15"
+    rule: "Business liability and similar insurance. Health insurance is not reported here."
+    keywords: [HISCOX, NEXT INSURANCE, LIABILITY INS]
+    keyword_confidence: 0.9
+
+  interest:
+    label: Business interest
+    line: "16b"
+    line_name: "Interest: Other"
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 16b"
+    rule: "Interest on business loans and business credit cards only."
+    keywords: [INTEREST CHARGE]
+    keyword_confidence: 0.6
+
+  legal_professional:
+    label: Legal and professional services
+    line: "17"
+    line_name: Legal and professional services
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 17"
+    rule: "Accountants, attorneys and tax-prep fees for the business."
+    keywords: [CPA, LEGALZOOM, LAW OFFICE, ATTORNEY]
+    keyword_confidence: 0.85
+
+  office:
+    label: Office expense
+    line: "18"
+    line_name: Office expense
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 18"
+    rule: "Office expenses such as postage and stationery."
+    keywords: [STAPLES, OFFICE DEPOT, USPS]
+    keyword_confidence: 0.8
+
+  rent:
+    label: Coworking / office rent
+    line: "20b"
+    line_name: "Rent or lease: Other business property"
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 20b"
+    rule: "Rent for business property such as a coworking membership. Rent for your home is not deductible here (see business use of home)."
+    keywords: [WEWORK, REGUS]
+    keyword_confidence: 0.9
+
+  repairs:
+    label: Repairs and maintenance
+    line: "21"
+    line_name: Repairs and maintenance
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 21"
+    rule: "Repairs that keep business property in working order."
+    keywords: [COMPUTER REPAIR]
+    keyword_confidence: 0.8
+
+  supplies:
+    label: Supplies
+    line: "22"
+    line_name: Supplies (not included in Part III)
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 22"
+    rule: "Materials and supplies consumed in the business."
+    keywords: []
+
+  taxes_licenses:
+    label: Taxes and licenses
+    line: "23"
+    line_name: Taxes and licenses
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 23"
+    rule: "Business licenses and business taxes. Federal income tax and self-employment tax are not deductible here."
+    keywords: [BUSINESS LICENSE, SECRETARY OF STATE]
+    keyword_confidence: 0.9
+
+  travel:
+    label: Business travel
+    line: "24a"
+    line_name: Travel
+    treatment: travel
+    direction: out
+    irs: "Pub 463, ch. 1"
+    rule: "Travel away from your tax home overnight for business: airfare, lodging, transport. Keep the business purpose."
+    keywords: [DELTA AIR, UNITED AIRLINES, SOUTHWEST AIR, AMERICAN AIRLINES, MARRIOTT, HILTON, AIRBNB]
+    keyword_confidence: 0.6
+    needs: [business_purpose]
+
+  meals:
+    label: Business meals
+    line: "24b"
+    line_name: Deductible meals
+    treatment: meals
+    direction: out
+    irs: "Pub 463, ch. 2"
+    rule: "50% of business meals with a client or while traveling for business. Keep who, where and the business purpose."
+    keywords: [RESTAURANT, CAFE, STARBUCKS, CHIPOTLE, DOORDASH, GRUBHUB]
+    keyword_confidence: 0.5
+    needs: [business_purpose]
+
+  utilities:
+    label: Business premises utilities
+    line: "25"
+    line_name: Utilities
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, line 25"
+    rule: "Utilities for business property you rent or own outside your home. Home utilities are covered by the business-use-of-home deduction."
+    keywords: []
+
+  phone_internet:
+    label: Phone and internet (business share)
+    line: "27a"
+    line_name: Other expenses
+    treatment: business_use
+    direction: out
+    irs: "Pub 334; Pub 587"
+    rule: "Deduct only the business-use percentage of your phone and internet service."
+    keywords: [VERIZON, T-MOBILE, AT&T, COMCAST, XFINITY, SPECTRUM]
+    keyword_confidence: 0.85
+    needs: [business_use_pct]
+
+  software:
+    label: Software and subscriptions
+    line: "27a"
+    line_name: Other expenses
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, Part V; Pub 334"
+    rule: "Software and online services used in the business."
+    keywords: [ADOBE, GITHUB, FIGMA, NOTION, ZOOM.US, GOOGLE *WORKSPACE, GSUITE, DIGITALOCEAN, AWS, DROPBOX, SLACK, CANVA]
+    keyword_confidence: 0.85
+
+  education:
+    label: Work-related education
+    line: "27a"
+    line_name: Other expenses
+    treatment: deductible
+    direction: out
+    irs: "Pub 334; Pub 970, ch. 12"
+    rule: "Education that maintains or improves skills in your current business (not training for a new trade)."
+    keywords: [UDEMY, COURSERA, PLURALSIGHT]
+    keyword_confidence: 0.75
+
+  bank_fees:
+    label: Business bank fees
+    line: "27a"
+    line_name: Other expenses
+    treatment: deductible
+    direction: out
+    irs: "Schedule C instructions, Part V"
+    rule: "Fees on a business bank account."
+    keywords: [MONTHLY SERVICE FEE, WIRE FEE]
+    keyword_confidence: 0.85
+
+  gifts:
+    label: Business gifts
+    line: "27a"
+    line_name: Other expenses
+    treatment: gift
+    direction: out
+    irs: "Pub 463, ch. 3"
+    rule: "Up to $25 per recipient per year."
+    keywords: []
+    needs: [recipient]
+
+  health_insurance:
+    label: Self-employed health insurance
+    line: null
+    line_name: Schedule 1 adjustment
+    treatment: schedule1
+    direction: out
+    irs: "Form 7206; Schedule 1 (Form 1040)"
+    rule: "Not a Schedule C expense. May be deductible on Schedule 1 if you weren't eligible for an employer plan."
+    keywords: [BLUE CROSS, AETNA, HEALTHCARE.GOV, KAISER]
+    keyword_confidence: 0.85
+
+  retirement:
+    label: Self-employed retirement contribution
+    line: null
+    line_name: Schedule 1 adjustment
+    treatment: schedule1
+    direction: out
+    irs: "Pub 560; Schedule 1 (Form 1040)"
+    rule: "SEP, SIMPLE and solo 401(k) contributions are Schedule 1 adjustments, not Schedule C expenses."
+    keywords: [SEP IRA, SEP-IRA, SOLO 401K]
+    keyword_confidence: 0.9
+
+  estimated_tax_payment:
+    label: Federal estimated tax payment
+    line: null
+    line_name: Payment (Form 1040, estimated tax paid)
+    treatment: tax_payment
+    direction: out
+    irs: "Form 1040-ES; Pub 505"
+    rule: "Federal estimated payments are credited on Form 1040, not deducted."
+    keywords: [IRS USATAXPYMT, EFTPS, IRS DIRECT PAY]
+    keyword_confidence: 0.95
+
+  entertainment:
+    label: Entertainment
+    line: null
+    line_name: Not deductible
+    treatment: nondeductible
+    direction: out
+    irs: "Pub 463, ch. 2"
+    rule: "Entertainment (shows, sporting events, golf) is not deductible, even with a client."
+    keywords: [TICKETMASTER, STUBHUB]
+    keyword_confidence: 0.8
+
+  home_utilities:
+    label: Home utilities and rent
+    line: null
+    line_name: Not deductible separately
+    treatment: nondeductible
+    direction: out
+    irs: "Pub 587"
+    rule: "With the simplified home-office method, home rent and utilities are covered by the $5/sq ft deduction and not deducted separately."
+    keywords: [PG&E, CON EDISON, DUKE ENERGY, RENT PAYMENT]
+    keyword_confidence: 0.85
+
+  personal:
+    label: Personal
+    line: null
+    line_name: Not deductible
+    treatment: nondeductible
+    direction: any
+    irs: "Pub 334"
+    rule: "Personal, living or family expenses are not deductible."
+    keywords: [NETFLIX, SPOTIFY, WHOLE FOODS, TRADER JOE, SAFEWAY, PLANET FITNESS, VENMO]
+    keyword_confidence: 0.8
+
+  transfer:
+    label: Transfer / card payment
+    line: null
+    line_name: Not income or expense
+    treatment: neutral
+    direction: any
+    irs: "Pub 583"
+    rule: "Moving money between your own accounts or paying a credit card is not income or an expense."
+    keywords: [ONLINE TRANSFER, AUTOPAY PAYMENT, PAYMENT THANK YOU, TRANSFER FROM SAVINGS, TRANSFER TO SAVINGS]
+    keyword_confidence: 0.95
+
+  refund:
+    label: Refund / return
+    line: null
+    line_name: Not income
+    treatment: neutral
+    direction: in
+    irs: "Pub 334"
+    rule: "A refund of a purchase is not income. If the purchase was a business expense, it reduces that expense."
+    keywords: [REFUND, RETURN CREDIT]
+    keyword_confidence: 0.85

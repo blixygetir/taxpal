@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TaxPal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="menu-btn" class="icon-btn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <a href="#home" class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>TaxPal</a>
+    <span id="topbar-title" class="topbar-title" aria-hidden="true"></span>
+    <nav class="top-actions" aria-label="Quick actions">
+      <a href="#review" class="top-link" data-page-link="review"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span class="label">Review</span><span id="nav-review-count" class="badge" hidden></span></a>
+      <a href="#ask" class="top-link" data-page-link="ask"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg><span class="label">Ask TaxPal</span></a>
+    </nav>
+  </header>
+
+  <div id="drawer-backdrop" class="backdrop" hidden></div>
+  <aside id="drawer" class="drawer" aria-label="Menu" aria-hidden="true" inert>
+    <div class="drawer-head">
+      <a href="#home" class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>TaxPal</a>
+      <button id="menu-close" class="icon-btn" aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <nav aria-label="Sections">
+      <ol class="drawer-nav">
+        <li><a href="#home" data-page-link="home"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span><b>Overview</b><small>Your progress at a glance</small></span></a></li>
+        <li><a href="#engine" data-page-link="engine"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M10 10h4v4h-4zM9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg><span><b>AI Engine</b><small>Load the model on your GPU</small></span></a></li>
+        <li><a href="#import" data-page-link="import"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg><span><b>Import Records</b><small>Bank, card, 1099s and mileage</small></span></a></li>
+        <li><a href="#files" data-page-link="files"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span><b>Files</b><small>Imports and downloads</small></span></a></li>
+        <li><a href="#profile" data-page-link="profile"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span><b>Profile</b><small>Filing status, home office and car</small></span></a></li>
+        <li class="nav-group">
+          <button class="nav-parent" id="results-toggle" aria-expanded="false" aria-controls="results-sub"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M6 17v-6M11 17V7M16 17v-4M21 17V4"/></svg><span><b>Results</b><small>Your numbers and sign-off</small></span><svg class="icon chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <ul id="results-sub" class="nav-sub" hidden>
+            <li><a href="#results/schedule-c" data-page-link="results/schedule-c">Business Profit</a></li>
+            <li><a href="#results/se-qbi" data-page-link="results/se-qbi">Self-Employment Tax</a></li>
+            <li><a href="#results/reconcile" data-page-link="results/reconcile">1099 Check</a></li>
+            <li><a href="#results/estimated-tax" data-page-link="results/estimated-tax">2027 Payments</a></li>
+            <li><a href="#signoff" data-page-link="signoff">Check and Sign Off <span id="nav-checks-count" class="badge" hidden></span></a></li>
+          </ul>
+        </li>
+      </ol>
+      <p class="nav-heading">Reference</p>
+      <ol class="drawer-nav">
+        <li><a href="#guide" data-page-link="guide"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16M8 7h8M8 11h6"/></svg><span><b>IRS Guidelines</b><small>Documents and rules TaxPal follows</small></span></a></li>
+        <li><a href="#privacy" data-page-link="privacy"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span><b>Privacy and Disclaimer</b><small>Everything stays on this computer</small></span></a></li>
+      </ol>
+    </nav>
+    <div class="drawer-foot muted small">For developers: <a href="/docs" target="_blank" rel="noopener">API docs</a></div>
+  </aside>
+
+  <main class="wrap">
+    <div class="page" id="page-home" data-page="home" hidden>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Overview</p>
+        <h2 id="home-greeting">Welcome to TaxPal</h2>
+        <p>Your private helper for self-employment taxes. Everything stays on this computer.</p>
+        <a class="button hero-cta" id="home-cta" href="#import">Get started <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="hero-art" aria-hidden="true"><span></span><span></span><span></span></div>
+    </section>
+
+    <div class="home-grid">
+      <section class="card">
+        <h2>Your Progress</h2>
+        <p class="muted">Five steps from bank files to a summary for your tax professional.</p>
+        <ol id="home-steps" class="stepper"></ol>
+      </section>
+      <section class="card">
+        <h2>At a Glance</h2>
+        <div id="home-stats" class="stats stats-2"></div>
+        <div class="quick-links">
+          <a href="#ask" class="quick"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg><span><b>Ask TaxPal</b><small>Chat or search IRS guides</small></span></a>
+          <a href="#guide" class="quick"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16M8 7h8M8 11h6"/></svg><span><b>IRS Guidelines</b><small>The rules, in plain words</small></span></a>
+          <a href="#files" class="quick"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span><b>Files</b><small>Download your summary</small></span></a>
+        </div>
+      </section>
+    </div>
+    </div>
+
+    <div class="page" id="page-engine" data-page="engine" hidden>
+    <section class="card" id="engine-card">
+      <h2>AI Engine</h2>
+      <p class="muted">Load the AI once to sort transactions and chat. It's optional; everything else works without it.</p>
+      <div id="gpu-status" class="status-panel" role="status"><b>Checking for WebGPU…</b></div>
+
+      <div class="engine-load">
+        <div class="field">
+          <label for="model-select">Model</label>
+          <select id="model-select"></select>
+        </div>
+        <button id="load-model" disabled>Load model</button>
+      </div>
+      <div class="progress" id="model-progress" hidden><div id="progress-bar"></div></div>
+      <p id="progress-text" class="muted small" role="status"></p>
+
+      <details class="more">
+        <summary>How the AI works</summary>
+        <p class="muted small">One small model sorts your transactions and powers the chat. It runs on your computer's GPU through WebGPU, so your data never leaves this computer. It learns from your corrections by using them as examples; the model itself is never retrained. All tax math is done by TaxPal's rules, not the AI.</p>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>IRS Search Index <span class="tag">optional</span></h2>
+      <p class="muted">Keyword search of the IRS documents works without it. The index adds meaning-based search, so a question like “lunch with a client” also finds the rules on business meals.</p>
+      <div id="irs-stats" class="stats"></div>
+      <div class="row">
+        <button id="irs-build" class="secondary" disabled>Build index</button>
+        <span id="irs-status" class="muted small" role="status">A one-time step that runs a 1 GB model on your GPU.</span>
+      </div>
+      <div class="progress" id="irs-progress" hidden><div id="irs-progress-bar"></div></div>
+    </section>
+      <a class="next" href="#import">Next: Import Your Records <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <div class="page" id="page-import" data-page="import" hidden>
+    <section class="card">
+      <h2>Import Your Records</h2>
+      <p class="muted">Add your 2026 records. Each file is imported as soon as you choose it, and only transactions are required. Select <span class="info static">i</span> to learn what a document is.</p>
+
+      <div class="step">
+        <div class="step-head"><span class="n sm">1</span><h3>Transactions</h3><span class="tag">required</span></div>
+        <p class="muted small">Every payment into and out of the bank or card account you use for work. Choose the type of file you have.</p>
+
+        <div class="segmented" role="radiogroup" aria-label="Kind of transaction file">
+          <label><input type="radio" name="txn-source" value="csv" checked> Spreadsheet (CSV) <span class="info" tabindex="0" role="note" aria-label="About CSV exports" data-tip="The transaction download from your bank or card website. Look for Download or Export, then choose CSV. Most banks offer it.">i</span></label>
+          <label><input type="radio" name="txn-source" value="statement"> Statement (PDF or Word) <span class="info" tabindex="0" role="note" aria-label="About statements" data-tip="The monthly statement your bank or card sends you. TaxPal reads it, shows you the transactions and checks that they add up to the balance before importing. Scanned photos can't be read.">i</span></label>
+        </div>
+
+        <div id="src-csv" class="source">
+          <div class="grid2 before-drop">
+            <div class="field">
+              <div class="field-head"><label for="txn-account">Account name</label><span class="info" tabindex="0" role="note" aria-label="About account name" data-tip="A short name for this account, such as Chase business account or Visa. It keeps your accounts separate.">i</span></div>
+              <input type="text" id="txn-account" placeholder="For example, Chase business account">
+            </div>
+            <label class="checkbox"><input type="checkbox" id="txn-positive"> Purchases show as positive numbers in this file <span class="info" tabindex="0" role="note" aria-label="About this setting" data-tip="Some card exports list purchases as positive and payments as negative. Open the file and check: if a purchase such as 12.50 has no minus sign, tick this box.">i</span></label>
+          </div>
+          <div class="drop">
+            <input type="file" id="txn-file" accept=".csv" aria-label="Bank or card CSV">
+            <div class="drop-body" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+              <span class="drop-title">Bank or card CSV</span>
+              <span class="drop-name" data-empty="Click to choose a file, or drag it here.">Click to choose a file, or drag it here.</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="src-statement" class="source" hidden>
+          <div class="drop">
+            <input type="file" id="stmt-file" accept=".pdf,.docx" aria-label="Bank or card statement">
+            <div class="drop-body" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+              <span class="drop-title">Bank or card statement</span>
+              <span class="drop-name" data-empty="PDF or Word (.docx). Click to choose a file, or drag it here.">PDF or Word (.docx). Click to choose a file, or drag it here.</span>
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="field">
+              <label for="stmt-account">Account name</label>
+              <input type="text" id="stmt-account" placeholder="For example, Chase business account">
+            </div>
+            <div class="field">
+              <label for="stmt-kind">Account type</label>
+              <select id="stmt-kind">
+                <option value="auto">Detect automatically</option>
+                <option value="bank">Bank account</option>
+                <option value="card">Credit card</option>
+              </select>
+            </div>
+          </div>
+          <div class="row"><button id="stmt-read">Read statement</button><span class="muted small">You'll see the transactions before anything is saved.</span></div>
+          <div id="stmt-preview"></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-head"><span class="n sm">2</span><h3>1099 forms</h3><span class="tag">optional</span><span class="info" tabindex="0" role="note" aria-label="About 1099 forms" data-tip="Forms your clients (1099-NEC) and payment apps like Stripe or PayPal (1099-K) send you in January. Make a CSV with four columns: form, payer, payer TIN (last 4 digits) and amount.">i</span></div>
+        <p class="muted small">Income that clients reported to the IRS. TaxPal checks it against your deposits.</p>
+        <div class="drop">
+            <input type="file" id="ir-file" accept=".csv,.json" aria-label="1099 list">
+            <div class="drop-body" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+              <span class="drop-title">1099 list</span>
+              <span class="drop-name" data-empty="CSV or JSON. Click to choose a file, or drag it here.">CSV or JSON. Click to choose a file, or drag it here.</span>
+            </div>
+          </div>
+      </div>
+
+      <div class="step">
+        <div class="step-head"><span class="n sm">3</span><h3>Mileage log</h3><span class="tag">optional</span><span class="info" tabindex="0" role="note" aria-label="About mileage logs" data-tip="One row per work trip in your own car, with three columns: date, miles and purpose. Driving from home to a regular workplace doesn't count.">i</span></div>
+        <p class="muted small">Work trips in your own car, used for the mileage deduction.</p>
+        <div class="drop">
+            <input type="file" id="mi-file" accept=".csv" aria-label="Mileage log">
+            <div class="drop-body" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+              <span class="drop-title">Mileage log</span>
+              <span class="drop-name" data-empty="CSV. Click to choose a file, or drag it here.">CSV. Click to choose a file, or drag it here.</span>
+            </div>
+          </div>
+      </div>
+
+      <div class="actions">
+        <span class="muted small">New here? <button id="sample-btn" class="link">Try it with sample data</button></span>
+        <button id="reset-btn" class="danger small push">Delete all data</button>
+      </div>
+      <p id="status-line" class="status small" role="status"></p>
+    </section>
+      <a class="next" href="#review">Next: Sort and Review <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <div class="page" id="page-review" data-page="review" hidden>
+    <section class="card">
+      <h2>Sort and Review</h2>
+      <p class="muted">TaxPal puts each transaction into a tax category. Your past answers and known merchants are applied first, and the AI handles the rest. Anything it isn't sure about waits for you below.</p>
+
+      <div class="sort-bar">
+        <button id="categorize-btn">Sort transactions</button>
+        <button id="recheck-btn" class="secondary" hidden>Re-check AI answers with my corrections</button>
+        <p id="learn-status" class="muted small"></p>
+      </div>
+      <details id="cat-log-box" class="log-box" hidden>
+        <summary>Sorting details</summary>
+        <pre id="cat-log" class="log"></pre>
+      </details>
+
+      <div class="step-head review-head"><h3>Needs your review</h3><span id="review-count" class="pill"></span></div>
+      <p class="muted small">Choose a category, or add a detail the IRS expects you to keep, such as the business purpose of a meal.</p>
+      <div id="review"></div>
+    </section>
+      <a class="next" href="#profile">Next: Fill In Your Profile <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <div class="page" id="page-ask" data-page="ask" hidden>
+    <section class="card ask-card">
+      <h2>Ask TaxPal</h2>
+      <p class="muted">Chat with the AI about your return, or look something up in the IRS guidance.</p>
+
+      <div class="segmented ask-tabs" role="tablist" aria-label="Ask TaxPal">
+        <button role="tab" id="tab-chat" aria-selected="true" aria-controls="ask-chat"><svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat</button>
+        <button role="tab" id="tab-irs" aria-selected="false" aria-controls="ask-irs" tabindex="-1"><svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/></svg> IRS guidance</button>
+      </div>
+
+      <div id="ask-chat" role="tabpanel" aria-labelledby="tab-chat">
+        <div id="chat-hint" class="notice">
+          <svg class="icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h12v12H6zM10 10h4v4h-4zM9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>
+          <div><b>The AI model isn't loaded yet.</b><span class="muted small">Load it once to chat. It runs on your GPU, so nothing leaves this computer.</span></div>
+          <a class="button small" href="#engine">Load the AI model</a>
+        </div>
+        <div class="chat-panel">
+          <div id="chat" class="chat" aria-live="polite">
+            <div id="chat-empty" class="chat-empty">
+              <b>What can TaxPal help with?</b>
+              <div class="chips">
+                <button type="button" class="chip" data-prompt="What still needs my review?" disabled>What still needs my review?</button>
+                <button type="button" class="chip" data-prompt="Explain my Schedule C in plain English" disabled>Explain my Schedule C in plain English</button>
+                <button type="button" class="chip" data-prompt="Which 1099s don't match my deposits?" disabled>Which 1099s don't match my deposits?</button>
+                <button type="button" class="chip" data-prompt="How much should I pay in estimated tax?" disabled>How much should I pay in estimated tax?</button>
+              </div>
+            </div>
+          </div>
+          <form id="chat-form" class="composer">
+            <input type="text" id="chat-input" placeholder="Ask about your taxes" aria-label="Message" autocomplete="off" disabled>
+            <button id="chat-send" class="icon-send" aria-label="Send" disabled><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+          </form>
+        </div>
+        <p class="muted small">TaxPal reads your data through the local API and asks before it changes anything. All the math is done by the rules engine, not the AI.</p>
+      </div>
+
+      <div id="ask-irs" role="tabpanel" aria-labelledby="tab-irs" hidden>
+        <div class="chat-panel">
+          <div id="irs-results" class="chat irs-panel" aria-live="polite">
+            <div class="chat-empty">
+              <b>Search the IRS guidance</b>
+              <div class="chips">
+                <button type="button" class="chip" data-irs="Can I deduct a lunch with a client?">Can I deduct a lunch with a client?</button>
+                <button type="button" class="chip" data-irs="Simplified home office deduction">Simplified home office deduction</button>
+                <button type="button" class="chip" data-irs="Is my phone bill deductible?">Is my phone bill deductible?</button>
+                <button type="button" class="chip" data-irs="When do I need a 1099-NEC?">When do I need a 1099-NEC?</button>
+              </div>
+            </div>
+          </div>
+          <form id="irs-form" class="composer">
+            <input type="search" id="irs-query" placeholder="Search IRS publications and instructions" aria-label="Search IRS guidance" autocomplete="off">
+            <button class="icon-send" aria-label="Search"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+          </form>
+        </div>
+        <p class="muted small">Works without the AI. Every answer links to the exact section on irs.gov.</p>
+      </div>
+    </section>
+    </div>
+
+    <div class="page" id="page-profile" data-page="profile" hidden>
+    <section class="card">
+      <h2>Profile</h2>
+      <p class="muted">Tell TaxPal about you and your business. These answers affect the tax calculations, so complete them before you review your results.</p>
+      <form id="profile-form" onsubmit="return false"></form>
+      <div class="row">
+        <button id="profile-save">Save profile</button>
+        <span id="profile-status" class="muted small" role="status"></span>
+      </div>
+    </section>
+      <a class="next" href="#results/schedule-c">Next: See Your Results <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <div class="page" id="page-results" data-page="results" hidden>
+    <section class="card">
+      <p class="eyebrow">Results</p>
+      <h2 id="results-title">Business Profit</h2>
+      <p id="results-desc" class="muted"></p>
+      <div id="results" aria-live="polite"></div>
+      <p class="muted small">Ready to share? Download the summary and workbook from <a href="#files">Files</a>.</p>
+    </section>
+      <a class="next" id="results-next" href="#results/se-qbi">Next</a>
+    </div>
+
+    <div class="page" id="page-signoff" data-page="signoff" hidden>
+    <section class="card">
+      <p class="eyebrow">Results</p>
+      <h2>Check and Sign Off</h2>
+      <p class="muted">Before your summary is final, TaxPal re-checks its math, your answers and your 1099s. Any later change returns it to draft.</p>
+      <div id="signoff-status" class="status-panel" role="status"></div>
+
+      <div class="section-head">
+        <h3>Checks <span id="checks-count" class="pill"></span></h3>
+        <button id="checks-btn" class="secondary small">Run again</button>
+      </div>
+      <div id="checks"></div>
+
+      <div class="signoff-box">
+        <label class="checkbox"><input type="checkbox" id="signoff-agree" disabled> I reviewed the categories, explanations and totals, and they match my records.</label>
+        <div class="signoff-actions">
+          <button id="signoff-btn" disabled>Sign off</button>
+          <span id="signoff-hint" class="muted small"></span>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div class="page" id="page-files" data-page="files" hidden>
+    <section class="card">
+      <h2>Files</h2>
+      <p class="muted">Everything you've imported, plus the files to give your tax professional.</p>
+      <h3>Downloads</h3>
+      <div class="downloads">
+        <a class="download" href="/api/export/summary.pdf" download><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg><span><b>Summary (PDF)</b><span class="muted small">Schedule C by line, taxes, the 1099 check and open items. Give this to your tax professional.</span></span></a>
+        <a class="download" href="/api/export/workbook.xlsx" download><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg><span><b>Workbook (Excel)</b><span class="muted small">Every transaction with its category and Schedule C line, plus 1099s and mileage.</span></span></a>
+      </div>
+      <h3>Imported</h3>
+      <div id="files-list"></div>
+    </section>
+    </div>
+    <div class="page" id="page-guide" data-page="guide" hidden>
+    <section class="card">
+      <p class="eyebrow">Reference</p>
+      <h2>IRS Guidelines</h2>
+      <p class="muted">TaxPal follows the IRS's own guides. Tap one to see what it says.</p>
+      <div id="guide-docs"></div>
+      <p class="muted small">Have a question? <a href="#ask">Ask TaxPal</a> can search these guides for you.</p>
+    </section>
+    <section class="card">
+      <h2>Where Your Costs Go</h2>
+      <p class="muted">Each kind of cost, and where it goes on your tax form.</p>
+      <div id="guide-rules"></div>
+    </section>
+    </div>
+
+    <div class="page" id="page-privacy" data-page="privacy" hidden>
+    <section class="card">
+      <p class="eyebrow">Reference</p>
+      <h2>Privacy and Disclaimer</h2>
+      <div class="status-panel warn">
+        <b>TaxPal is not tax advice.</b>
+        <span>It doesn't file your taxes. Check everything with a tax professional before you file.</span>
+      </div>
+
+      <h3>Your data stays on this computer</h3>
+      <ul class="plain-list">
+        <li>Everything is saved in one file on this computer.</li>
+        <li>There are no accounts and nothing is uploaded.</li>
+        <li>The AI runs on this computer too.</li>
+        <li>No tracking, no cookies and no ads.</li>
+      </ul>
+
+      <h3>When TaxPal goes online</h3>
+      <ul class="plain-list">
+        <li>Only to download the AI the first time. Your data is never sent.</li>
+        <li>And when you click a link to irs.gov.</li>
+      </ul>
+
+      <h3>Deleting your data</h3>
+      <p class="muted">Go to <a href="#import">Import Records</a> and select <b>Delete all data</b>.</p>
+    </section>
+    </div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

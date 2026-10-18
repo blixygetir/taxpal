@@ -1,0 +1,77 @@
+# Federal numbers for TY2026, each with where it came from.
+# Some 2026 instructions were still drafts as of Oct 2026, so recheck these
+# once the final versions are out.
+tax_year: 2026
+
+mileage:
+  # the IRS raised the rate mid-year
+  source: "IRS Notice 2026-10; IRS Announcement 2026-11"
+  periods:
+    - {start: 2026-01-01, end: 2026-06-30, rate: 0.725}
+    - {start: 2026-07-01, end: 2026-12-31, rate: 0.76}
+
+se_tax:
+  source: "Schedule SE (Form 1040) and instructions; IRS Topic 751"
+  net_earnings_factor: 0.9235
+  social_security_rate: 0.124
+  medicare_rate: 0.029
+  social_security_wage_base: 184500
+  filing_threshold: 400
+  deductible_half: 0.5
+
+additional_medicare:
+  source: "Form 8959 instructions"
+  rate: 0.009
+  thresholds: {single: 200000, head_of_household: 200000, married_joint: 250000, married_separate: 125000, qualifying_surviving_spouse: 200000}
+
+meals:
+  source: "IRS Pub 463, ch. 2"
+  deductible_pct: 0.5
+
+gifts:
+  source: "IRS Pub 463, ch. 3"
+  per_recipient_limit: 25
+
+home_office_simplified:
+  source: "IRS Pub 587; Schedule C instructions, line 30"
+  rate_per_sqft: 5
+  max_sqft: 300
+
+information_returns:
+  source: "2026 Pub 1099; IRS Form 1099-K FAQs"
+  nec_misc_threshold: 2000
+  k_amount_threshold: 20000
+  k_transaction_threshold: 200
+
+qbi:
+  source: "Rev. Proc. 2025-32; draft 2026 Form 8995 instructions; IRC 199A"
+  rate: 0.20
+  # above these you need 8995-A, which we don't do
+  thresholds: {single: 201750, head_of_household: 201750, qualifying_surviving_spouse: 201750, married_separate: 201775, married_joint: 403500}
+  minimum_deduction: 400
+  minimum_deduction_qbi_floor: 1000
+
+estimated_tax:
+  source: "Form 1040-ES; IRS Pub 505"
+  plan_year: 2027
+  # Jan 15 2028 is a Saturday and the 17th is MLK Day
+  due_dates: [2027-04-15, 2027-06-15, 2027-09-15, 2028-01-18]
+  current_year_pct: 0.90
+  prior_year_pct: 1.00
+  prior_year_pct_high_income: 1.10
+  high_income_agi: {default: 150000, married_separate: 75000}
+  no_penalty_below: 1000
+
+substantiation:
+  # receipts needed for lodging (any amount) and other travel, meals and gift costs of $75+
+  source: "IRS Pub 463, ch. 5; Treas. Reg. 1.274-5(c)(2)(iii)"
+  receipt_threshold: 75
+  lodging_keywords: [MARRIOTT, HILTON, HYATT, HOTEL, MOTEL, " INN", AIRBNB, VRBO, WESTIN, SHERATON]
+
+de_minimis_safe_harbor:
+  # per item or invoice, for businesses without an applicable financial statement
+  source: "Treas. Reg. 1.263(a)-1(f)(1)(ii); IRS Notice 2015-82"
+  limit: 2500
+
+# home costs that only count through the home office deduction (Pub 587)
+home_expense_keywords: [APT, APTS, APARTMENT, RENT PAYMENT, LANDLORD, MORTGAGE, HOA, PROPERTY MGMT, PG&E, CON EDISON, DUKE ENERGY]
