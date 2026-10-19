@@ -8,8 +8,6 @@ Local, privacy-first tax prep for US freelancers (Tax Year 2026, Schedule C).
 
 > TaxPal is not tax advice and does not file returns. Review its worksheets with a qualified tax professional.
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for the design, IRS rules and roadmap.
-
 ## Run
 
 ```bash
@@ -20,6 +18,21 @@ uv run taxpal            # http://127.0.0.1:8000  (API docs at /docs)
 Open the page in a WebGPU browser (recent Chrome or Edge; ~2.3 GB GPU memory), load the model, then **Load sample data** → **Sort transactions** → review → results.
 
 Without WebGPU everything except the AI still works: keyword rules sort most transactions and you review the rest by hand.
+
+### Hosted website (no install)
+
+`scripts/build_site.py` builds `dist/`, a static site that runs the same Python API in the
+browser with [Pyodide](https://pyodide.org). The database is kept in the browser's
+IndexedDB, so records still never leave the user's device and nobody runs `uv run taxpal`.
+
+```bash
+python scripts/build_site.py           # writes dist/
+python -m http.server -d dist 8080     # try it at http://localhost:8080
+```
+
+`.github/workflows/pages.yml` deploys `dist/` to GitHub Pages on every push to `main`.
+To use a custom domain (e.g. a `.tech` domain), set it under the repo's
+Settings → Pages → Custom domain and point the domain's DNS at GitHub Pages.
 
 ## Develop
 

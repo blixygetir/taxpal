@@ -3,3 +3,6 @@ __pycache__/
 *.db
 .pytest_cache/
 .irs_cache/
+dist/
+._*
+.DS_Store

@@ -432,3 +432,9 @@ details.more p { margin: 8px 0 0; }
 .doc-body { padding: 0 16px 14px calc(96px + 20px + 14px + 16px); }  /* lines up with the title */
 .doc-body > p { margin: 8px 0 0; }
 @media (max-width: 600px) { .doc-body { padding-left: 16px; } .doc-item summary { flex-wrap: wrap; } }
+
+/* ---------- hosted build: starting the in-browser API ---------- */
+.boot-banner { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 100; max-width: calc(100% - 32px);
+  padding: 12px 18px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border);
+  color: var(--text); box-shadow: var(--shadow-lg); font-size: 0.92rem; }
+.boot-banner.error { background: var(--danger-soft); color: var(--danger); }
